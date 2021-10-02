@@ -15,3 +15,7 @@ add_executable(Repetitions IntroductoryProblems/Repetitions.cpp)
 add_executable(TrailingZeros IntroductoryProblems/TrailingZeros.cpp)
 add_executable(TwoSets IntroductoryProblems/TwoSets.cpp)
 add_executable(WeirdAlgorithm IntroductoryProblems/WeirdAlgorithm.cpp)
+
+add_executable(DistinctNumbers SortingAndSearching/DistinctNumbers.cpp )
+add_executable(Apartments SortingAndSearching/Apartments.cpp)
+add_executable(FerrisWheel SortingAndSearching/FerrisWheel.cpp)

@@ -8,21 +8,16 @@ class Solution{
 public:
     int appleDivision(vector<int>& vec){
         sort(vec.begin(), vec.end());
-        int sumWeight = 0;
-        for (int i = 0; i < vec.size(); i++)  {
-           sumWeight += vec[i] ;
+        int groupA = 0;
+        int groupB = 0;
+
+        for (int i = 0; i < vec.size(); i++) {
+            if (groupA > groupB)
+                groupB += vec[i];
+            else
+                groupA += vec[i];
         }
 
-        int group = 0;
-        int r = vec.size() - 1;
-        int miniDiff = sumWeight;
-        while ( r >= 0) {
-           group += vec[r] ;
-           if (sumWeight - group  < miniDiff){
-               miniDiff = sumWeight - group;
-           }
-        }
-        return miniDiff;
     }
 };
 
