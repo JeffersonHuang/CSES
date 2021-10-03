@@ -8,40 +8,26 @@ using namespace  std;
 int main()
 {
     int n,m;
+    multiset<int> tickets;
     cin >> n >> m;
 
-    vector<int> tickets(n);
-    vector<int> customers(m);
-    vector<int> res(m,-1);
-
-    for (int i = 0; i < n; i++) {
-        cin >> tickets[i];
+    int tmp;
+    for(int i = 0; i < n; i++) {
+        cin >> tmp;
+        tickets.insert(tmp);
     }
 
-    for (int i = 0; i < m ; i++) {
-        cin >> customers[i];
-    }
-    int index = -1;
-
-
-    //TIME LIMIT EXCEEDED
-    for (int i = 0; i < m; i++) {
-        for (int j = 0; j < n; j++) {
-            int diff = customers[i] - tickets[j];
-            if (diff >= 0) {
-               if (res[i] < tickets[j]) {
-                   res[i] = tickets[j];
-                   index = j;
-               }
-            }
-        }
-        tickets[index]  = INT_MAX;
-    }
-
+    int t;
     for (int i = 0;i < m; i++) {
-        cout << res[i] << endl;
+        cin >> t;
+        auto it = tickets.upper_bound(t);
+        if (it == tickets.begin()) {
+           cout << -1 << endl;
+        }
+        else {
+            cout << *(--it) << endl;
+            tickets.erase(it);
+        }
     }
-
-
     return 0;
 }

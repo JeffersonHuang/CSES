@@ -10,31 +10,20 @@ int main()
     int n;
     cin >> n;
 
-    vector<pii> customers(n);
+    vector<pii> customers;
     for (int i = 0; i < n; i++) {
         int a,b;
         cin >> a >> b;
-        customers[i] = make_pair(a,b);
+        customers.emplace_back(a,1);
+        customers.emplace_back(b,-1);
     }
+    sort(customers.begin(),  customers.end());
 
-    sort(customers.begin(),  customers.end(), [&](pii x, pii y){
-        if (x.first < y.first)
-            return true;
-        return false;
-    });
-
-    int l = customers[0].first;
-    int r = customers[n-1].second;
-
-    int res = 0;
     int aux = 0;
-    for (int i = l ; i <= r; i++) {
-        for (int j = 0; j < n; j++) {
-            if (customers[j].second >= i && customers[j].first <= i)
-                aux++;
-        }
-        res = max(aux, res);
-        aux = 0;
+    int res = 0;
+    for (auto x : customers) {
+        aux += x.second;
+        res = max(res, aux);
     }
     cout << res << endl;
 //    for (int i = 0; i < n; i++) {
